@@ -21,31 +21,52 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 public class Time {
-    int hour;
-    int minute;
-    int second;
-    int elapsedMillisecond = Calendar.MILLISECOND;
+    private int hour;
+    private int minute;
+    private int second;
+    long elapsedTime = System.currentTimeMillis() / 1000l;
+
+    // Getter for hour
+    public int getHour() {
+//        return hour;
+        return (int)((elapsedTime / (1000*60*60)) % 24);
+    }
+    // Getter for minute
+    public int getMinute() {
+//        return minute;
+        return (int)((elapsedTime / (1000*60)) % 60);
+    }
+    // Getter for second
+    public int getSecond() {
+//        return second;
+        return (int)(elapsedTime / 1000) % 60 ;
+    }
+
+    public long getElapsedTime() {
+        return elapsedTime;
+    }
 
     // No-arg constructor that creates a Time object for the current time. (The values of the data fields will represent the current time.).
     Time(){
-        // new Time object
+        // new Calendar object
         Calendar now = Calendar.getInstance();
 
-        //declare values of variables to current time
+        //declare values of variables to current time on the object now
         hour = now.get(Calendar.HOUR_OF_DAY);
         minute = now.get(Calendar.MINUTE);
         second = now.get(Calendar.SECOND);
     }
 
     // A constructor that constructs a Time object with a specified elapsed time since midnight, January 1, 1970, in milliseconds. (The values of the data fields will represent this time.)
-    Time(long elapsedMillisecond, long elapsedMinute, long elapsedSecond){
-        //create new object of the type Calendar
-       Calendar now = Calendar.getInstance();
-        Time elapsedTime = new Time();
+    Time(long elapsedTime){
+        this.elapsedTime = elapsedTime;
+    }
 
-        long elapsedHour = TimeUnit.MILLISECONDS.toHours(elapsedMillisecond);
-        long elapsedMinutes = TimeUnit.MILLISECONDS.toMinutes(elapsedMillisecond);
-        long elapsedSeconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillisecond);
+    // A constructor that constructs a Time object with the specified hour, minute, and second.
+    Time(int hour, int minute, int second){
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
     }
 
     public static void main(String[] args) {
@@ -59,12 +80,37 @@ public class Time {
         System.out.println("");
 
         //show the constructor with elapsed time since 1 January 1970.
-        Time elapsedTime = new Time();
+        Time newElapsedTime = new Time(currentTime.elapsedTime);
         System.out.println("Since 1 January 1970");
+        System.out.println("- Elapsed time in milliseconds: " + newElapsedTime.elapsedTime);
 
-        System.out.println("- Elapsed hours: " + elapsedTime.elapsedMillisecond);
-        System.out.println("- Elapsed minute: " + elapsedTime.minute);
-        System.out.println("- Elapsed second: " + elapsedTime.second);
+        System.out.println("");
+
+        //show the constructor with the specified hour, minute, second
+        System.out.println("The specified constructor: ");
+        Time specified = new Time();
+        specified.hour = 10;
+        specified.minute = 2;
+        specified.second = 55;
+        Time specifiedTime = new Time(specified.hour, specified.minute, specified.second);
+        System.out.println("- The specifiedTime hour: " + specifiedTime.hour);
+        System.out.println("- The specifiedTime minute: " + specifiedTime.minute);
+        System.out.println("- The specifiedTime second: " + specifiedTime.second);
+
+        System.out.println("");
+
+
+        System.out.println("Method run setTime()");
+        Time newTime = new Time(555550000);
+        setTime(555550000);
+        System.out.println("- ElapseTime hours: " + newTime.getHour());
+        System.out.println("- ElapseTime minutes: " + newTime.getMinute());
+        System.out.println("- ElapseTime seconds: " + newTime.getSecond());
     }
 
+    // A method named setTime(long elapseTime) that sets a new time for the object using the elapsed time. For example,
+    // if the elapsed time is 555550000 milliseconds, the hour is 10, minute is 19 and the second is 10.
+    public static void setTime(long elapsedTime){
+        elapsedTime = elapsedTime;
+    }
 }
