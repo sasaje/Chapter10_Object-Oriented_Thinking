@@ -6,7 +6,7 @@
  *
  */
 
-package Assignment10_1;
+package Sara;
 
 /*
 * A data fields hour, minute and second that represent a time.
@@ -92,16 +92,16 @@ public class Time {
         specified.minute = 2;
         specified.second = 55;
         Time specifiedTime = new Time(specified.hour, specified.minute, specified.second);
-        System.out.println("- The specifiedTime hour: " + specifiedTime.hour);
-        System.out.println("- The specifiedTime minute: " + specifiedTime.minute);
-        System.out.println("- The specifiedTime second: " + specifiedTime.second);
+        System.out.println("- The specifiedTime hour: " + specifiedTime.getHour());
+        System.out.println("- The specifiedTime minute: " + specifiedTime.getMinute());
+        System.out.println("- The specifiedTime second: " + specifiedTime.getSecond());
 
         System.out.println("");
 
 
         System.out.println("Method run setTime()");
         Time newTime = new Time(555550000);
-        setTime(555550000);
+        newTime.setTime(555550000);
         System.out.println("- ElapseTime hours: " + newTime.getHour());
         System.out.println("- ElapseTime minutes: " + newTime.getMinute());
         System.out.println("- ElapseTime seconds: " + newTime.getSecond());
@@ -109,12 +109,23 @@ public class Time {
 
     // A method named setTime(long elapseTime) that sets a new time for the object using the elapsed time. For example,
     // if the elapsed time is 555550000 milliseconds, the hour is 10, minute is 19 and the second is 10.
-    public static void setTime(long elapsedTime){
-        elapsedTime = elapsedTime;
+    public void setTime(long elapsedTime){
+        this.elapsedTime = elapsedTime;
     }
 
-    public void freezeTime(){
-        this.elapsedTime = 1604663919; // freeze to now
-        int z;
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public void setElapsedTime(long elapsedTime) {
+        this.elapsedTime = elapsedTime;
     }
 }
