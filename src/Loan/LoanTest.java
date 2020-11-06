@@ -46,14 +46,14 @@ class LoanTest {
 
     @Test
     void getMonthlyPayment() {
-        Loan loan7 = new Loan();
-        assertEquals(84.4661111639436, loan7.getMonthlyPayment());
+        Loan loan7 = new Loan(8.25,5,1000);
+        assertEquals(20.40, loan7.getMonthlyPayment(), 0.01);
     }
 
     @Test
     void getTotalPayment() {
         Loan loan8 = new Loan();
-        assertEquals(1013.5933339673231, loan8.getTotalPayment());
+        assertEquals(1013.60, loan8.getTotalPayment(), 0.01);
     }
 
     @Test // OBS! Denne metode kan ikke testes.
