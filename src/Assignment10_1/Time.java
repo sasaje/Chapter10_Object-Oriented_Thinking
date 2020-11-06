@@ -18,7 +18,6 @@ package Assignment10_1;
 */
 
 import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 public class Time {
     private int hour;
@@ -112,5 +111,10 @@ public class Time {
     // if the elapsed time is 555550000 milliseconds, the hour is 10, minute is 19 and the second is 10.
     public static void setTime(long elapsedTime){
         elapsedTime = elapsedTime;
+    }
+
+    public void freezeTime(){
+        this.elapsedTime = 1604663919; // freeze to now
+        int z;
     }
 }
