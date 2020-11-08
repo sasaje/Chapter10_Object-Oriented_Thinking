@@ -6,7 +6,7 @@
  *
  */
 
-package Sara;
+package Assignment10_1;
 
 /*
 * A data fields hour, minute and second that represent a time.
